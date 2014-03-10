@@ -147,7 +147,7 @@ html{
 	padding:0 7px;
 	text-decoration:none;
 	&:hover{
-		color:#FFFFFF !important;
+	   color:#FFFFFF !important;
  }
 }	
 
@@ -273,12 +273,12 @@ nav{
 		font:normal .13em/0 'districtPro', 'san-serif'; //16
 		position:absolute; 
 		top:50%; right:50%;
-    margin:13px -58px; 
+    		margin:13px -58px; 
 		display:none;
 		}
 		p{
-			font:normal .16em/1 'districtPro', 'san-serif'; //16
-			margin-top:1em; 
+		  font:normal .16em/1 'districtPro', 'san-serif'; //16
+		  margin-top:1em; 
 		}
 	}
 }
@@ -445,9 +445,9 @@ figure{
 	float:left;
 	width:100%;
 	h2{
-		font-size:6em; 
-		color:$darkGray;
-		margin:.5em 0 0;}
+	   font-size:6em; 
+	   color:$darkGray;
+	   margin:.5em 0 0;}
 	p{margin-left:.6em;}
 }
 
