@@ -1,0 +1,765 @@
+/*	CIEE .org
+		--------------------------------------
+		Author:			Alayna Hebert, Patrick Rudman, Regis Biron
+		Copyright:	(c) 2012 CIEE.
+		All rights reserved.
+		
+		Table of Contents 
+		--------------------------------------
+		1. CSS Reset
+    2. Sass, Variables and Mixins
+    3. Fonts
+    4. Webkit Scrollbar
+    5. Text Selection Highlight
+	  6. Site Wide
+	  7. Layout
+    8. 404/Whoops 
+    9. Header
+    10. Main Nav
+    11. Left Nav
+    12. Footer
+    13. Media Queries 
+*/
+
+/*------------------------------------------------*/  
+                /*--CSS Reset--*/  
+/*------------------------------------------------*/ 
+@import "normalize";   
+ 
+img{max-width:100%;max-height:100%;}  
+
+/* Use border-box box-sizing that includes padding and border in the width/height */
+*{ outline-style:none; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; *behavior: url(/js/libs/boxsizing.htc);}
+
+/*--/CSS Reset--*/
+
+/*------------------------------------------------*/  
+          /*--Sass, Variables and Mixins--*/
+/*------------------------------------------------*/ 
+
+/*--CSS3 Support--*/ 
+$experimental-support-for-opera:false;
+$experimental-support-for-khtml:false;
+$experimental-support-for-svg: true;
+@import "compass/css3/images";
+@import "compass/css3/transition";
+@import "compass/css3/box-shadow";
+@import "compass/css3";
+
+/* Color Variables */
+$mainColor:#009bd7;       //Blue
+$secondaryColor:#f47a47;  //Orange
+$linkColor:#009bd7;       //Blue
+$linkHover:#f47a47;       //Gray
+$gray:#838383;						//Gray
+
+$whoColor:#009bd7;      //Blue
+$whatColor:#943066;     //Purple
+$believeColor:#53aa73;  //Green
+$howColor:#f47a47;      //Orange
+
+//Clearfix
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+//Media Queries
+@mixin breakpoint($point) {
+  @if $point == phoneVert {
+    @media (min-width: 21.25em) { @content; } /* Phone horizontal, 340/16 */
+  }
+  @if $point == phoneHoriz {
+    @media (min-width: 30em) { @content; } /* Phone horizontal, 480/16 */
+  }
+  @else if $point == small {
+    @media (min-width: 37.5em) { @content; } /* Tablet vertical, 600/16 */
+  }
+  @else if $point == tabletVert {
+    @media (min-width: 47.9375em) { @content; } /* Tablet vertical, 767/16 */
+  }
+  @else if $point == mid {
+    @media (min-width: 48.75em) { @content; } /* Above tablet vertical, 780/16 */
+  }
+  @else if $point == tabletHoriz {
+    @media (min-width: 64em) { @content; } /* Tablet horizontal, 1024/16 */
+  }
+  @else if $point == desktop {
+    @media (min-width: 66.25em) { @content; } /* Nearing desktop 1060/16 */
+  }
+  @else if $point == large {
+    @media (min-width: 80em)  { @content; } /* Max size, 1280/16 */
+  }
+  @else if $point == max {
+    @media (min-width: 87.5em)  { @content; } /* Max size, 1400/16 */
+  }
+}
+
+//Retina Images
+@mixin image-2x($image, $width, $height) {
+  @media (min--moz-device-pixel-ratio: 1.3),
+         (-o-min-device-pixel-ratio: 2.6/2),
+         (-webkit-min-device-pixel-ratio: 1.3),
+         (min-device-pixel-ratio: 1.3),
+         (min-resolution: 1.3dppx) {
+    /* on retina, use image that's scaled by 2 */
+    background-image: url($image);
+    background-size: $width $height;
+  }
+}
+
+// Creating Arrows
+//
+// @param width           :  px, em
+// @param height          :  px, em
+// @param direction       :  up, down, left, right
+// @param color           :  hex, rgb
+
+@mixin arrow($width: 20px, $height: 20px, $direction: up, $color: blue){
+  width: 0;
+  height: 0;
+  
+  // Right
+  @if $direction == right{
+    border-top: $height/2 solid transparent;
+    border-bottom: $height/2 solid transparent;
+    border-left: $width solid $color;
+  }
+
+  // Left
+  @if $direction == left{
+    border-top: $height/2 solid transparent;
+    border-bottom: $height/2 solid transparent;
+    border-right: $width solid $color;
+  }
+
+  // Up
+  @if $direction == up{
+    border-left: $width/2 solid transparent;
+    border-right: $width/2 solid transparent;
+    border-bottom: $height solid $color;
+  }
+
+  // Down
+  @if $direction == down{
+    border-left: $width/2 solid transparent;
+    border-right: $width/2 solid transparent;
+    border-top: $height solid $color;
+  }
+}
+
+/*-------------------------------------------------------*/
+                  /*--Fonts--*/	
+/*-------------------------------------------------------*/
+ 
+@import "font-awesome";
+ 
+/*---/fonts---*/
+
+/*-------------------------------------------------------*/
+                  /*--Webkit Scrollbar--*/	
+/*-------------------------------------------------------*/
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+   background: #ececec;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #8b8b8b;  
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: #8b8b8b;
+}
+
+/*---/webkit scrollbar---*/
+
+/*-------------------------------------------------------*/
+           /*--Text Selection Highlight--*/	
+/*-------------------------------------------------------*/
+
+::-moz-selection { background: #BBBBBB; color: #FFFFFF;}
+::selection { background: #BBBBBB; color: #FFFFFF;}
+
+/*---/text selection highlight---*/
+
+
+/*------------------------------------------------*/
+									/*--Site Wide--*/
+/*------------------------------------------------*/
+
+body{
+  //font:normal 400 18px/1.5 "freight-sans-pro-n4", "freight-sans-pro", sans-serif; /* 18px/27px */
+  font:normal 400 100%/1.5 "freight-sans-pro-n4", "freight-sans-pro", sans-serif;  /* 100% = 16px, default line height is 1.5x whatever the font is */
+  color:#2c2c2c;
+  min-width: 288px;
+  width:100%;
+	background:#FFF;}
+
+
+a, a:visited{text-decoration:none;}
+
+#content{
+  a, a:visited{color:$linkColor; }
+  a:active, a:hover{color:$linkHover;}
+}
+
+h1{
+    font: 2.3em/1 "bebas-neue",sans-serif;
+    color: $mainColor;
+    margin:0 0 0.5em 0;}
+
+h2{
+    @extend h1;
+    margin:0 0 .5em 0;}
+
+h3{
+    font: normal 700 1.25em/1 "freight-sans-pro-n7", "freight-sans-pro",sans-serif;
+    text-transform:uppercase;
+    color:$gray;
+    margin:1em 0 1.5em 0;}
+
+h4{
+    font: normal 700 1em/1 "freight-sans-pro-n7", "freight-sans-pro",sans-serif;
+    text-transform:uppercase;
+    color:#707070;
+    padding-bottom:0;}
+
+h5{
+    font: normal 700 1.1em/1 "freight-sans-pro-n7", "freight-sans-pro",sans-serif;
+    text-transform:uppercase;
+    color:#474545;
+    margin:0 0 0.5em 0;}
+
+p{
+  padding-bottom:1.5em;}
+
+strong {
+  font-weight: 600;}
+
+em {
+  font-style:italic;}
+
+#slidingContent ul, .modalWindow ul{
+  list-style-type:disc;
+  margin-left:1em;
+  margin-bottom:1em;
+  list-style:none;
+  li{
+    list-style:none;
+		padding-left:1.5em;
+    padding-bottom:0.5em;
+    position:relative;
+    &:before{
+      content: '\F101';
+      font: normal normal 1em/1 'FontAwesome';
+      display: block;
+      position:absolute;
+      top:6px;
+      left:0px;
+      text-decoration: inherit;
+      width: 1em;
+      text-align: center;
+      font-variant: normal;
+      text-transform: none;
+    }
+  }
+}
+
+ol{
+	list-style-type:decimal;
+	margin-left:1em;
+  margin-bottom:1em;
+  font-weight: 700;
+  color: $secondaryColor;
+  li{
+    list-style-type:decimal;
+		padding-left: 0.5em;
+    padding-bottom:0.5em;
+    p{
+      font:normal 400 1em "freight-sans-pro-n4", "freight-sans-pro", sans-serif;
+      color:#707070;
+      padding: 0;
+    }
+  }
+  ol{
+    list-style-type:lower-alpha;
+    li{
+      color:#707070;
+    }
+  }
+}
+
+img.imgRight {
+	float:right;
+	max-width:40%;
+	margin:0 3% 1em 3%;
+	padding: 3px;
+	background-color: white;
+	border: 1px solid #BBB;}
+
+img.imgLeft {
+	float:left;
+	max-width:40%;
+	margin:0 3.5% 1em 0;
+	padding: 3px;
+	background-color: white;
+	border: 1px solid #BBB;}
+
+.group:after {  /*For clearing a group of elements*/
+  content: "";
+  display: table;
+  clear: both;}
+
+.fixed{position:fixed;}
+
+a.button, a.button:visited{
+  display:block;
+	float:left;
+	cursor:pointer;
+  padding:.75em 3em .75em 3em;
+	font: normal 500 1.3em/1.1em "freight-sans-pro-n5", "freight-sans-pro",sans-serif; /* 24/18 */
+	color:#FFF;
+	background-color: $mainColor;
+  text-align:center;
+  text-transform:uppercase;
+  @include transition(all .2s ease);
+  &.sm-btn{
+    font-size:1em;
+    line-height:1em;
+    padding:.25em 1.5em .35em 1.5em;
+  }
+  &:hover{
+    background-color: $secondaryColor;
+    @include transition(all .2s ease);
+  }
+}
+
+#content a.button{color:#FFF;} //The #content a color was overriding this
+
+/*used for jump arrow/top button*/
+#jumpArrow{
+  position: fixed;
+  bottom: 25px;
+  right: 25px; 
+  display: none;
+  z-index:100;}
+
+a.top {
+	display: block;
+  color:#FFF; 
+  background: rgba(223, 223, 223, 0.8); 
+  i {
+    font-size: 1.2em;
+    line-height: 1em;
+    padding: 0.6em .7em;
+  }
+ }
+
+a.topFooter{
+  display: block;
+  color:#FFF; 
+  border: 1px solid #FFFFFF;
+  background-color: #2c2c2c;
+  i {
+    font-size: 1.2em;
+    line-height: 1em;
+    padding: 0.6em .7em;
+  }
+}
+
+#loaderWrapper{
+  background-color:#FFF;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  z-index:100;
+  position:fixed;}
+
+#loader {
+  display:none;
+  position: absolute; 
+  background: url('../images/sitewide/loader-logo214x90.png') top left no-repeat;
+  width: 215px; 
+  height:90px;
+	z-index:90;
+	top:45%;
+	left:50%;
+	margin-left:-107px;
+  @include image-2x("../images/sitewide/loader-logo-2x-418x176.png", 214px, 90px);
+  .logo-empty {
+    position: absolute;
+    background-color:#FFF;
+    height: 90px; 
+    width:100%;
+    opacity:.5;
+    left:0;
+  }
+}
+
+/*---/sitewide--->
+
+/*------------------------------------------------*/
+				/*--Layout--*/
+/*------------------------------------------------*/
+
+//Page width: 1920px, Border: 15px//
+
+#blackBarDrop{z-index:100;}
+
+#wrapper{
+  font-size:1.125em; /*18px/16px*/
+  position:relative;
+  width:100%; /* 1920 */
+  padding:0 1.8% 1.8% 1.8%;
+  clear:both; 
+  @extend %clearfix;
+  @include breakpoint(desktop) { 
+    padding:0 .8% .8% .8%; /* 1920/15 */
+  }  
+}
+
+.slidePage{
+  display:none;
+}
+
+#slidingContent{
+  position:relative;
+  padding-top:1em;
+  @extend %clearfix;
+  @include breakpoint(mid) { 
+    margin-top:48px; //Accounts for #mainNav
+  }
+}
+
+#sectionIntro{
+  position:relative;
+  height:240px; /* 245 height mobile - (290 width mobile * .2625 slope) */
+  padding-top:26.25%; /* ((665 height desktop - 245 height mobile) / (1890 width desktop - 290 width mobile)) * 100 */
+  background: no-repeat center center; 
+  @include background-size(cover);
+  .sectionBlurb{
+    position:absolute;
+    width:94%;
+    top:50%;
+		left:3%;
+		margin-top:-8%;
+    display: none;
+    @include breakpoint(phoneHoriz) { 
+        display: block;
+      }
+    h1{
+      color:#FFF;
+      margin-bottom:0;
+      @include breakpoint(small) { 
+        font-size: 4em; 
+      }
+      @include breakpoint(large) { 
+        font-size: 6em;
+      } 
+    }
+    p{
+      color:#FFF;
+      font-size: 1.25em;
+      @include breakpoint(large) { 
+        font-size: 2em;
+      }
+    }
+  }
+} /* /#sectionIntro */
+
+#main{
+  width:100%;
+  max-width:1280px;
+  padding:2em 3%;
+  margin:auto;
+  background-color:#FFF;
+  position:relative;
+  z-index:3;
+  @extend %clearfix;}
+
+.mobile #main{padding-top:25px;} 
+ 
+#content{
+  width:100%;
+  max-width: 1280px;
+  position:relative;
+  float:right;}
+
+section{
+	float:left;
+  width:100%;
+	margin-bottom:4em;
+	&:after{
+		content: '';
+		border-bottom: 1px solid #DADADA;
+		width: 80px;
+		height: 3em;
+		margin-left: 35%;
+		float: left;
+		clear:left;
+  }
+  &:last-child{
+    &:after{
+      display:none;
+    }
+  }
+  &.no-divider{
+    margin-bottom:0;
+    &:after{
+      display:none;
+    }
+  }
+}
+
+/*---/layout--->
+
+
+/*------------------------------------------------*/
+				        /*--404/Whoops--*/
+/*------------------------------------------------*/
+
+@import "error";
+ 
+/*---/404/whoops--->
+
+/*------------------------------------------------*/
+				        /*--Header--*/
+/*------------------------------------------------*/
+
+@import "header";
+ 
+/*---/header--->
+
+/*------------------------------------------------*/
+				        /*--Main Nav--*/
+/*------------------------------------------------*/
+
+@import "main-nav";
+ 
+/*---/main nav--->
+
+/*------------------------------------------------*/
+				        /*--Left Nav--*/
+/*------------------------------------------------*/
+
+@import "left-nav";
+
+/*---/left nav--->
+
+/*------------------------------------------------*/
+				        /*--Footer--*/
+/*------------------------------------------------*/
+
+@import "footer";
+
+/*---/footer--->
+
+
+/*-------------------------------------------------------*/
+                  /*--Media Queries--*/	
+/*-------------------------------------------------------*/
+
+/* Disable iOS/WinMobile font size changes */
+@media screen and (max-width: 600px), screen and (max-device-width: 480px) {
+	html {
+		-ms-text-size-adjust: none;
+		-webkit-text-size-adjust: none;
+	}
+}
+
+@media screen and (min-width: 340px) { /*  */
+  section {
+      &:after{
+      margin-left:40%;
+      }
+    }
+}
+
+@media screen and (min-width: 600px) { /*  */
+  #jumpArrow{
+    bottom: 35px;
+    right: 35px;
+  }
+  a.top {
+	display: block;
+  color:#FFF; 
+  i {
+    font-size: 1.65em;
+    line-height: 1em;
+    padding: 0.55em .7em;
+  }
+ }
+
+a.topFooter{
+  display: block;
+  color:#FFF; 
+  border: 1px solid #FFFFFF;
+  i {
+    font-size: 1.65em;
+    line-height: 1em;
+    padding: 0.55em .7em;
+  }
+}
+
+section {
+  &:after{
+    margin-left:44%;
+    width: 100px;
+		height: 4em;
+    }
+  }
+}
+
+@media screen and (min-width: 767px) { /* iPad Vertical and Above */
+  .mainH1{
+		font-size:4em;}
+
+	.highlight{
+		font-size:1.3em;
+		padding-bottom:1em;}
+}
+
+@media screen and (min-width: 780px) { /* Above iPad Vertical */
+
+  section {
+      &:after{
+      margin-left:40%;
+      width: 100px;
+		  height: 4em;
+      }
+    }
+
+  #content{
+    width:65%;
+    &.oneCol{
+      width:100%;  
+    }
+  }
+}
+
+@media screen and (min-width: 64em) { /* Above iPad Horizontal */
+  .slidePage{ /*There are Safari Specific styles in JSSitewide*/
+    font: normal normal 4.5em/1em 'FontAwesome';
+    display:block;
+    position:fixed;
+    top:45%;
+    margin-top:-100%;
+    padding: 100% 15px;
+    color:$mainColor;
+    z-index: 8;
+		transition:.3s;
+    &#arrowLeft{left:.8%;}
+    &#arrowRight{right:.8%;}
+    &:before{
+      content: attr(title);
+      font: normal 600 .3em/1em "freight-sans-pro-n6", "freight-sans-pro", sans-serif;
+      text-transform: uppercase;
+      text-align: center;
+      color: #FFF;
+      padding: 1em 1em;
+      width: 190px;
+      display: block;
+      position: absolute;
+      top: 50%;
+      margin-top:-1.5em;
+    }
+    &:after{
+      content:"";
+      display:block;
+      position:absolute;
+      top:50%;
+      margin-top:-12px;
+    }
+    &#arrowLeft{
+      &:before{
+        left: -300px; /*57px*/
+				transition:.3s;
+      }
+      &:after{
+        right:300px;
+				transition:.3s;
+      }
+    }
+    &#arrowRight{
+      &:before{
+				right: -300px;
+				transition:.3s;
+      }
+      &:after{
+        left:300px;
+				transition:.3s;
+      }
+		}
+		&:hover{ 
+		  color:#FFF;
+		  background-color:#dfdfdf;
+		  &#arrowLeft{
+		    &:before{
+				  left: 57px;
+        }
+			  &:after{
+				  right: 0;
+          @include arrow(14px, 24px, left, $mainColor); 
+        }
+		  }
+			&#arrowRight{
+        &:before{
+					right: 57px;
+        }
+        &:after{
+          left:0;
+          @include arrow(14px, 24px, right, $mainColor);
+        }
+			}
+    } /* /.slidePage:hover */
+    &:before{
+      background-color:$mainColor;
+    } 
+  } /* /.slidePage */ 
+  
+  #main{padding:60px 6%;}
+
+  section {
+      &:after{
+      margin-left:45%;
+      width: 120px;
+		  height: 4em;
+      }
+    }
+  a.top {
+    @include transition(background-color .2s ease-in-out);
+  &:hover{
+    background-color: #AAAAAA;
+    @include transition(background-color .2s ease-in-out);
+  }
+ }
+
+a.topFooter{
+  @include transition(background-color .2s ease-in-out);
+  &:hover{
+    background-color: #3B3B3B;
+    @include transition(background-color .2s ease-in-out);
+  }
+}
+  
+}
+
+@media screen and (min-width: 1280px) { /* Max Width */
+  #main{padding:60px 5%;}
+}
+
+@media screen and (min-width: 1400px) { /* Max Width */
+  #main{padding:60px 0;}
+}
+
+/*---/media queries---*/
