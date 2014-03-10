@@ -526,7 +526,7 @@ section{
 
 
 /*------------------------------------------------*/
-				        /*--404/Whoops--*/
+              /*--404/Whoops--*/
 /*------------------------------------------------*/
 
 @import "error";
@@ -534,7 +534,7 @@ section{
 /*---/404/whoops--->
 
 /*------------------------------------------------*/
-				        /*--Header--*/
+		/*--Header--*/
 /*------------------------------------------------*/
 
 @import "header";
@@ -542,7 +542,7 @@ section{
 /*---/header--->
 
 /*------------------------------------------------*/
-				        /*--Main Nav--*/
+	          /*--Main Nav--*/
 /*------------------------------------------------*/
 
 @import "main-nav";
@@ -550,7 +550,7 @@ section{
 /*---/main nav--->
 
 /*------------------------------------------------*/
-				        /*--Left Nav--*/
+		/*--Left Nav--*/
 /*------------------------------------------------*/
 
 @import "left-nav";
@@ -558,7 +558,7 @@ section{
 /*---/left nav--->
 
 /*------------------------------------------------*/
-				        /*--Footer--*/
+		 /*--Footer--*/
 /*------------------------------------------------*/
 
 @import "footer";
@@ -684,21 +684,21 @@ section {
     &#arrowLeft{
       &:before{
         left: -300px; /*57px*/
-				transition:.3s;
+	transition:.3s;
       }
       &:after{
         right:300px;
-				transition:.3s;
+	transition:.3s;
       }
     }
     &#arrowRight{
       &:before{
-				right: -300px;
-				transition:.3s;
+	right: -300px;
+	transition:.3s;
       }
       &:after{
         left:300px;
-				transition:.3s;
+	transition:.3s;
       }
 		}
 		&:hover{ 
@@ -706,7 +706,7 @@ section {
 		  background-color:#dfdfdf;
 		  &#arrowLeft{
 		    &:before{
-				  left: 57px;
+			left: 57px;
         }
 			  &:after{
 				  right: 0;
