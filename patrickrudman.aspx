@@ -36,8 +36,6 @@
           <span class="newColorIcon"><i class="icon-pencil"></i></span>
           <p>patrick rudman, web designer</p></a>
         </div>
-
-
         </div><!--/navWrapper-->
     </header>
  
@@ -315,7 +313,6 @@
             <div class="percent color">0%</div>
         </div><!--/jquery-->
 
-
       </div><!--/skills-->
 
     </section><!--/about-->
@@ -327,7 +324,7 @@
       
       <div id="contactForm" runat="server">
               <div class="textBoxDiv"><!--First Name-->
-		            <label>name, <span class="requiredField color">*</span></label>
+		<label>name, <span class="requiredField color">*</span></label>
                 <asp:TextBox runat="server" CssClass="borderColor" ID="name" CausesValidation="true" MaxLength="50" />
                 <asp:RequiredFieldValidator ID="rfvName" ForeColor="#d43c5a" CssClass="formError color" ErrorMessage="you forgot to enter your name" SetFocusOnError="true" ControlToValidate="name" runat="server" Display="Dynamic" />
                 <asp:RegularExpressionValidator ID="regExpName" ForeColor="#d43c5a" CssClass="formError color" SetFocusOnError="true" runat="server" ErrorMessage="sorry, unsupported characters" ControlToValidate="name" ValidationExpression="[a-zA-Z0-9\s\'\,\-]{1,50}" Display="Dynamic" />
@@ -343,15 +340,13 @@
               <div class="textBoxDiv">
                 <label>message, <span class="requiredField color">*</span></label>
                 <asp:TextBox TextMode="MultiLine" CssClass="borderColor" runat="server" Rows="6" Wrap="true" ID="message" CausesValidation="true" />
-                
                 <asp:RequiredFieldValidator ID="rfvMessage" ForeColor="#d43c5a" CssClass="formError color" ErrorMessage="you forgot to enter your message" SetFocusOnError="true" ControlToValidate="message" runat="server" Display="Dynamic" />
-
                 <asp:RegularExpressionValidator ID="rfvRegxMessage" ForeColor="#d43c5a" CssClass="formError color" SetFocusOnError="true" runat="server" ErrorMessage="sorry, unsupported characters" ControlToValidate="message" ValidationExpression="[a-zA-Z0-9\s\'\,\!\;\)\(\*\&\-\#\.\@\/]{1,250}" Display="Dynamic" />
               </div>
           
-	            <div class="submitButtonDiv">
+	      <div class="submitButtonDiv">
                 <asp:Button Enabled="true" CssClass="button color-bg" runat="server" ID="btnSubmit" Text="send" OnClick="btnSubmit_Click"  />
-	            </div>
+	      </div>
 
       </div><!--/form-->
       
