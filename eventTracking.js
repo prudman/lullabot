@@ -1,5 +1,3 @@
-//This is a Google tracking script I wrote to create an event for every anchor or input button with an ID, or any pdf download on the page.
-
 
 $(document).ready(function () {
   //Function for Auto Generating Event Tracking
