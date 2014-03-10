@@ -23,12 +23,11 @@ $experimental-support-for-svg: true;
 @import "compass/css3/background-size";
 
 /* Color Variables */
-//$mainColor:#d43c5a;       //Red
+//$mainColor:#d43c5a;     //Red
 $mainColor:#FFFFFF;       //Red
-$lightGray:#ebebeb;			  //LightGray
-$gray:#959595;					  //Gray
-$darkGray:#464646;      //DarkGray
-
+$lightGray:#ebebeb;	  //LightGray
+$gray:#959595;		  //Gray
+$darkGray:#464646;        //DarkGray
 
 
 /*-------------------------------------------------------*/
@@ -95,7 +94,7 @@ $darkGray:#464646;      //DarkGray
 /*---/text selection highlight---*/
 
 /*--------------------------------------------------------------------*/
-												       /*--sitewide--*/
+	/*--sitewide--*/
 /*--------------------------------------------------------------------*/
 
 #preloader{
@@ -105,7 +104,7 @@ $darkGray:#464646;      //DarkGray
 	right:0;
 	bottom:0;
 	background-color:white;
-  z-index:99;
+        z-index:99;
 	height:100%;
 	.loading{
 	   width:100px;
@@ -113,8 +112,8 @@ $darkGray:#464646;      //DarkGray
 	   position:absolute; 
 	   left:50%;
 	   top:35%;
-		 background:url('../images/spinnerNew100x100.gif') no-repeat 0 0;
-		 background-size:80px 80px;
+	   background:url('../images/spinnerNew100x100.gif') no-repeat 0 0;
+	   background-size:80px 80px;
 	   margin:0 0 0 -40px;}
 }
 
@@ -149,7 +148,7 @@ html{
 	text-decoration:none;
 	&:hover{
 		color:#FFFFFF !important;
-}
+ }
 }	
 
 section{
@@ -382,7 +381,7 @@ figure{
 
 
 /*--------------------------------------------------------------------*/
-												       /*--About--*/
+	/*--About--*/
 /*--------------------------------------------------------------------*/
 
 #about{
@@ -539,7 +538,7 @@ footer{
 
 /*-----------------------------------------------------------------------------------------*/
 
-												         /*--Media Queries--*/
+	/*--Media Queries--*/
 
 /*-----------------------------------------------------------------------------------------*/
 
